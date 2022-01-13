@@ -170,3 +170,5 @@ Comandos utiles
     corr_values.sort_values(kind="quicksort")  #utiliza el metodo de quicksort para organizar las listas
 
 - sns.pairplot(df_cancer_test) # grafica de las correlaciones
+
+- sns.countplot("Sex",hue="name_survived",data=titanic_data_set)  #cuenta la columna Sex y la separa por sobrevivientes y no sobrevivientes
