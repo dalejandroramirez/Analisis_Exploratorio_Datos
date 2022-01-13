@@ -94,12 +94,79 @@ Herramientas de software para análisis exploratorio de datos
 
 _______________________________________________________________________________________
 
-Transformar los datos
-
+Estadistica Descriptiva
 _______________________________________________________________________________________
+paquetes :
+    scipy.stats
 
 
 
+comandos utilies
+
+     - df_chicago["NUM_UNITS"].plot()    #grafica rapida
+
+     - ss.variation(df_chicago["NUM_UNITS"])  # varianza del proceso
+
+     - plt.hist(df_chicago["NUM_UNITS"])   # histograma de la columna NUM_UNITS
+
+     - tab=pd.crosstab(index=df_chicago["CRASH_MONTH"],columns="Frecuencia")  # crea una tabla de         frecuencias para la columna crash_month
+
+     - plt.bar(tab.index,tab["Frecuencia"])
+
+     - df_chicago["NUM_UNITS"].describe()  #descripción basica de la muestra
+    
+_________________________________________________________________________________________________
+
+- Medida de dispersión
+
+    skewness : Asimetria estadistica, mide el grado de simetria que tiene la distribucion
+                simetria positiva :  mode < median< mean
+                simetria negativa : mean < median< mode
+
+    
+    curtosis :
+                Que tan acumulados estan los datos
 
 
+_________________________________________________________________________________________________
+
+-   Agrupamiento de datos:
+    investigar sobre df_chicago.groupby(["LIGHTING_CONDITION","REPORT_TYPE","CRASH_HOUR"]).agg({"NUM_UNITS": ["sum","min","max"]})
+
+_________________________________________________________________________________________________
+
+- Integración de datos 
+
+
+
+Pivot table:
+con pandas, el comando pivot_table, nos permite agrupar toda la tabla del dataset, dejandonos ver la acumulación de datos y agruparlos en variables que expresemos en un
+indice
+
+filtro:
+Cuando tomamos el dataframe y aplicamos el comando filter, nos muestra solo las columnas que ingresemos filtradas y separadas.
+
+crosstab:
+El comando de pandas $crosstab$ nos permite hacer una tabulación de la tabla entre varias variables, lo cual nos indica en el ejemplo el número de accidentes dependiendo de las condiciones de luz y la hora específica del accidente
+
+
+______________________________________________________________________________________________
+
+Correlación
+
+Comandos utiles
+
+- .iloc[inicio_row:fin_row , inicio_col: fin_col]
         
+        df_cancer_test=df_cancer.iloc[:,:6]  ## todas las filas y las primeras 6 columnas
+
+
+-   sns.heatmap(corr_matrix)   #correlacion grafica usando seanborn
+
+-   corr_matrix.unstack()  #convierte la matriz llamada corr_matrix en un array
+
+-   corr_matrix.unstack()
+    corr_values=corr_matrix.unstack() 
+    corr_values.sort_values(kind="quicksort")  #utiliza el metodo de quicksort para organizar las listas
+
+- sns.pairplot(df_cancer_test) # grafica de las correlaciones
