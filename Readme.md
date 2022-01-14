@@ -172,3 +172,56 @@ Comandos utiles
 - sns.pairplot(df_cancer_test) # grafica de las correlaciones
 
 - sns.countplot("Sex",hue="name_survived",data=titanic_data_set)  #cuenta la columna Sex y la separa por sobrevivientes y no sobrevivientes
+
+
+________________________________________________________________________________________________________
+
+Series de tiempo
+
+_______________________________________________________________________________________________________
+
+Comandos importantes:
+    - data_power["Date"]=pd.to_datetime(data_power["Date"])  ## Convierte en formato time por facilidad
+
+    - data_power=data_power.set_index("Date")  ## Convierte la columna Date en el indice del dataset
+
+    - data_power["year"]=data_power.index.year
+    - data_power["month"]=data_power.index.month   ## Guarda los meses dias y años respectivamente
+    - data_power["day"]=data_power.index.day
+
+
+    - name=["Consumption","Wind","Solar"]  # Crea una serie temporal de las columnas de name
+    - data_power[name].plot(marker=".",alpha=0.5,figsize=(14,6),subplots=True)
+
+    - OJO!!! data_power.loc["2016-1":"2017-1","Consumption"].plot(marker="o") # filtra desde el primer mes del 2016 hasta el primer mes del 2017
+
+    - fig , axess = plt.subplots(3,1,figsize=(8,7))
+    for name ,ax in zip(["Consumption","Wind","Solar"],axess):  ##grafica de caja de los meses
+
+        sns.boxplot(data=data_power,x="month",y=name,ax=ax)
+
+___________________________________________________________________________________________________
+
+# Resumen para el desarrollo y evaluacion del modelo
+
+___________________________________________________________________________________________________
+
+Imagina que ya estás en un proyecto de Data Science y tu quieres comprobar algo. Por ejemplo: ¿En que momento va a renunciar un empleado de la empresa?
+
+Debes plantear una hipótesis inicial, a esta le llamaremos “Hipótesis Nula” y algo que lo contratidga le llamaremos “Hipótesis alternativa”. Y a tu Hipótesis Nula la pondremos a prueba con una “Prueba de Hipótesis”, la cual debes elegir sabiamente.
+La prueba de hipótesis la debemos elegir es en base a la forma en la que están distribuidos nuestros datos, tipos de medición , tipos de datos o características. Las pruebas pueden ser:
+
+-   Anova
+-   Z-test
+-   T-test
+-   Chi-squared test
+-   Cuando ya hallas elegido tu prueba de hipótesis, tendrás un P-Value que te dirá si tu hipótesis se acepta o se rechaza, en base a su ubicación en la campana.
+
+
+PRUEBA DE MODELOS:
+
+    - Si quieres comprobar si un modelo funciona de la manera correcta, entrénalo con un conjunto de datos de entrenamiento (se recomienda que contenga un 80% de los datos totales) y evalúa el rendimiento de tu modelo con el 20% de datos restantes.
+    
+    - Una vez hallas evaluado tu modelo con el los conjuntos de datos de entrenamiento y de testing (80 y 20) puedes usar una matriz de confusión, esto te dirá todos los aciertos de tu modelo.
+    
+    - Una vez termines de ver tu Matriz de confusión, podrás ver que tan preciso o exacto es tu modelo.
